@@ -47,7 +47,7 @@ export function PlantSave() {
 
             navigation.navigate('Confirmation', {
                 title: 'Tudo certo!',
-                subTitle: 'Fique tranquilo que sempre vamos lembrar você de cuidar da sua plantinha com muito cuidado!.',
+                subTitle: 'Fique tranquilo que sempre vamos lembrar você de cuidar da sua plantinha com muito cuidado!',
                 buttonTitle: 'Muito obrigado :D',
                 icon: 'hug',
                 nextScreen: 'MyPlants'
@@ -57,58 +57,61 @@ export function PlantSave() {
         }
     }
     return (
-        // <ScrollView>
-        <View style={styles.container}>
-            <View style={styles.plantInfo}>
-                <SvgFromUri
-                    uri={plant.photo}
-                    height={150}
-                    width={150}
-                />
+        <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.container}
+        >
+            <View style={styles.container}>
+                <View style={styles.plantInfo}>
+                    <SvgFromUri
+                        uri={plant.photo}
+                        height={150}
+                        width={150}
+                    />
 
-                <Text style={styles.plantName}>
-                    {plant.name}
-                </Text>
-                <Text style={styles.plantAbout}>
-                    {plant.about}
-                </Text>
-            </View>
-
-            <View style={styles.controller}>
-                <View style={styles.tipContainer}>
-                    <Image
-                        source={waterDrop}
-                        style={styles.tipImage} />
-                    <Text style={styles.tipText}>
-                        {plant.water_tips}
+                    <Text style={styles.plantName}>
+                        {plant.name}
+                    </Text>
+                    <Text style={styles.plantAbout}>
+                        {plant.about}
                     </Text>
                 </View>
-                <Text style={styles.alertLabel}>
-                    Escolhe ai
+
+                <View style={styles.controller}>
+                    <View style={styles.tipContainer}>
+                        <Image
+                            source={waterDrop}
+                            style={styles.tipImage} />
+                        <Text style={styles.tipText}>
+                            {plant.water_tips}
+                        </Text>
+                    </View>
+                    <Text style={styles.alertLabel}>
+                        Escolhe ai
                 </Text>
 
-                {showDatePicker && (<DateTimePicker
-                    value={selectedDateTime}
-                    mode="time"
-                    display="spinner"
-                    onChange={handleChangeTime}
-                />)}
-                {
-                    Platform.OS === 'android' && (
-                        <TouchableOpacity style={styles.dateTimePickerButton} onPress={handleOpenDateTimePickerForAndroid}>
-                            <Text style={styles.dateTimePickerText}>
-                                {` Mudar ${format(selectedDateTime, 'HH:mm')} `}
-                            </Text>
-                        </TouchableOpacity>
-                    )
-                }
+                    {showDatePicker && (<DateTimePicker
+                        value={selectedDateTime}
+                        mode="time"
+                        display="spinner"
+                        onChange={handleChangeTime}
+                    />)}
+                    {
+                        Platform.OS === 'android' && (
+                            <TouchableOpacity style={styles.dateTimePickerButton} onPress={handleOpenDateTimePickerForAndroid}>
+                                <Text style={styles.dateTimePickerText}>
+                                    {` Mudar ${format(selectedDateTime, 'HH:mm')} `}
+                                </Text>
+                            </TouchableOpacity>
+                        )
+                    }
 
-                <Button
-                    title='Cadastrar planta'
-                    onPress={handleSavePlant} />
+                    <Button
+                        title='Cadastrar planta'
+                        onPress={handleSavePlant} />
+                </View>
             </View>
-        </View>
-        // </ScrollView>
+        </ScrollView>
     )
 }
 
